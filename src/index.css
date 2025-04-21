@@ -1,0 +1,166 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import './styles/scrollbar-hide.css';
+
+@layer base {
+  :root {
+    --background: 0 0% 100%;
+    --foreground: 222.2 84% 4.9%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 222.2 84% 4.9%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 222.2 84% 4.9%;
+
+    --primary: 252 83% 74%;
+    --primary-foreground: 0 0% 100%;
+
+    --secondary: 210 40% 96.1%;
+    --secondary-foreground: 222.2 47.4% 11.2%;
+
+    --muted: 210 40% 96.1%;
+    --muted-foreground: 215.4 16.3% 46.9%;
+
+    --accent: 252 83% 96%;
+    --accent-foreground: 222.2 47.4% 11.2%;
+
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 210 40% 98%;
+
+    --border: 214.3 31.8% 91.4%;
+    --input: 214.3 31.8% 91.4%;
+    --ring: 252 83% 74%;
+
+    --radius: 0.5rem;
+
+    --sidebar-background: 0 0% 98%;
+    --sidebar-foreground: 240 5.3% 26.1%;
+    --sidebar-primary: 252 83% 74%;
+    --sidebar-primary-foreground: 0 0% 98%;
+    --sidebar-accent: 240 4.8% 95.9%;
+    --sidebar-accent-foreground: 240 5.9% 10%;
+    --sidebar-border: 220 13% 91%;
+    --sidebar-ring: 252 83% 74%;
+
+    --blog-purple: 252 83% 74%;
+    --blog-darkPurple: 252 83% 64%;
+  }
+
+  .dark {
+    --background: 224 71% 4%;
+    --foreground: 213 31% 91%;
+
+    --card: 224 71% 4%;
+    --card-foreground: 213 31% 91%;
+
+    --popover: 224 71% 4%;
+    --popover-foreground: 215 20.2% 65.1%;
+
+    --primary: 252 83% 74%;
+    --primary-foreground: 0 0% 100%;
+
+    --secondary: 222.2 47.4% 11.2%;
+    --secondary-foreground: 210 40% 98%;
+
+    --muted: 223 47% 11%;
+    --muted-foreground: 215 20.2% 65.1%;
+
+    --accent: 216 34% 17%;
+    --accent-foreground: 210 40% 98%;
+
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 210 40% 98%;
+
+    --border: 216 34% 17%;
+    --input: 216 34% 17%;
+    --ring: 252 83% 74%;
+    
+    --sidebar-background: 224 71% 4%;
+    --sidebar-foreground: 213 31% 91%;
+    --sidebar-primary: 252 83% 74%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 222.2 47.4% 11.2%;
+    --sidebar-accent-foreground: 213 31% 91%;
+    --sidebar-border: 216 34% 17%;
+    --sidebar-ring: 252 83% 74%;
+
+    --blog-purple: 252 83% 74%;
+    --blog-darkPurple: 252 83% 84%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground font-sans;
+  }
+  
+  .blog-content h1 {
+    @apply text-3xl font-bold mt-6 mb-4;
+  }
+  
+  .blog-content h2 {
+    @apply text-2xl font-bold mt-5 mb-3;
+  }
+  
+  .blog-content h3 {
+    @apply text-xl font-bold mt-4 mb-2;
+  }
+  
+  .blog-content p {
+    @apply my-4 leading-relaxed;
+  }
+  
+  .blog-content ul, .blog-content ol {
+    @apply my-4 pl-6;
+  }
+  
+  .blog-content ul {
+    @apply list-disc;
+  }
+  
+  .blog-content ol {
+    @apply list-decimal;
+  }
+  
+  .blog-content a {
+    @apply text-blog-purple hover:underline;
+  }
+  
+  .blog-content blockquote {
+    @apply border-l-4 border-blog-purple pl-4 italic my-4;
+  }
+  
+  .blog-content pre {
+    @apply bg-muted p-4 rounded my-4 overflow-x-auto;
+  }
+  
+  .blog-content code {
+    @apply bg-muted px-1 py-0.5 rounded text-sm;
+  }
+  
+  .blog-content img {
+    @apply max-w-full rounded-lg my-6 mx-auto;
+  }
+}
+
+@layer utilities {
+  /* Hide scrollbar for Chrome, Safari and Opera */
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+
+  /* Hide scrollbar for IE, Edge and Firefox */
+  .no-scrollbar {
+    -ms-overflow-style: none;  /* IE and Edge */
+    scrollbar-width: none;  /* Firefox */
+  }
+}
