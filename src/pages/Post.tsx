@@ -18,20 +18,20 @@ import { Badge } from "@/components/ui/badge";
 import RecommendedPosts from "@/components/blog/RecommendedPosts";
 
 const PostPage = () => {
-  const { id } = useParams<{ id: string }>();
+  const { id } = useParams<{ id: string }>(); // Get the post id from the URL
   const [post, setPost] = useState<Post | null>(null);
   const [comments, setComments] = useState<Comment[]>([]);
   const [recommendedPosts, setRecommendedPosts] = useState<Post[]>([]);
   const [isLoading, setIsLoading] = useState(true);
   const [commentText, setCommentText] = useState("");
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const { user } = useAuth();
+  const { user } = useAuth(); // User info from authentication context
   const { toast } = useToast();
 
   useEffect(() => {
     const fetchData = async () => {
       if (!id) return;
-      
+
       setIsLoading(true);
       try {
         const fetchedPost = await getPostById(id);
@@ -39,7 +39,7 @@ const PostPage = () => {
           setPost(fetchedPost);
           const [fetchedComments, fetchedRecommendedPosts] = await Promise.all([
             getCommentsByPostId(id),
-            fetchedPost.category ? getRecommendedPosts(fetchedPost.category, id) : Promise.resolve([])
+            fetchedPost.category ? getRecommendedPosts(fetchedPost.category, id) : Promise.resolve([]),
           ]);
           setComments(fetchedComments);
           setRecommendedPosts(fetchedRecommendedPosts);
@@ -64,12 +64,7 @@ const PostPage = () => {
     
     setIsSubmitting(true);
     try {
-      const newComment = await addComment(
-        post.id,
-        user.id,
-        commentText.trim()
-      );
-      
+      const newComment = await addComment(post.id, user.id, commentText.trim());
       setComments((prev) => [newComment, ...prev]);
       setCommentText("");
       
@@ -102,7 +97,7 @@ const PostPage = () => {
 
   const getCategoryColor = (category?: string) => {
     if (!category) return "bg-gray-100 text-gray-800 hover:bg-gray-200";
-    
+
     switch(category.toLowerCase()) {
       case "technology":
         return "bg-blue-100 text-blue-800 hover:bg-blue-200";
@@ -129,7 +124,6 @@ const PostPage = () => {
 
   const formatCategoryText = (category: string | undefined) => {
     if (!category) return "Uncategorized";
-    
     return category.split('-').map(word => 
       word.charAt(0).toUpperCase() + word.slice(1)
     ).join(' ');
