@@ -71,3 +71,17 @@ Yes, you can!
 To connect a domain, navigate to Project > Settings > Domains and click Connect Domain.
 
 Read more here: [Setting up a custom domain](https://docs.lovable.dev/tips-tricks/custom-domain#step-by-step-guide)
+
+## Client-side Routing Configuration
+
+Since this is a Single Page Application (SPA) using React Router, you need proper server configuration to handle direct URL access to routes like `/post/your-post-id`.
+
+This repository includes configuration files for different hosting platforms:
+
+- **Netlify**: Uses `_redirects` file and `netlify.toml` to configure routing
+- **Vercel**: Uses `vercel.json` to handle client-side routes
+- **Apache**: Uses `.htaccess` file with URL rewriting rules
+
+When deploying your application, make sure these files are properly included in your build and the server is configured to handle all routes by serving the main `index.html` file.
+
+Without this configuration, direct access to URLs like `https://blog420.site/post/043af443-ad7b-42c9-94a6-8506413a8847` will result in a 404 error, as the server will try to find a file that doesn't exist instead of letting the client-side router handle it.
