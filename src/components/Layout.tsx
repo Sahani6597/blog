@@ -30,9 +30,6 @@ const Layout = () => {
               <Link to="/" className="text-gray-700 hover:text-blog-purple transition-colors">
                 Home
               </Link>
-              <Link to="/about" className="text-gray-700 hover:text-blog-purple transition-colors">
-                About
-              </Link>
               <Link to="/forum" className="text-gray-700 hover:text-blog-purple transition-colors">
                 Forum
               </Link>
