@@ -50,7 +50,7 @@ const RecommendedPosts = ({ posts, getCategoryColor, formatCategoryText }: Recom
                 </div>
               </div>
               <Link 
-                to={`/post/${post.id}`} 
+                to={`/post/${post.slug || post.id}`} 
                 className="text-lg font-semibold hover:text-blog-purple transition-colors line-clamp-2"
               >
                 {post.title}

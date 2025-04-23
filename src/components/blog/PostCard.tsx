@@ -50,7 +50,7 @@ const PostCard = ({ post, getCategoryColor, formatCategoryText }: PostCardProps)
           </div>
         </div>
         <CardTitle className="mt-2 text-xl hover:text-blog-purple transition-colors">
-          <Link to={`/post/${post.id}`}>{post.title}</Link>
+          <Link to={`/post/${post.slug || post.id}`}>{post.title}</Link>
         </CardTitle>
       </CardHeader>
       <CardContent className="p-4 pt-2">
@@ -63,7 +63,7 @@ const PostCard = ({ post, getCategoryColor, formatCategoryText }: PostCardProps)
           <User className="h-3 w-3 mr-1" />
           {post.author_name}
         </div>
-        <Link to={`/post/${post.id}`}>
+        <Link to={`/post/${post.slug || post.id}`}>
           <Button variant="ghost" size="sm" className="text-blog-purple hover:text-blog-darkPurple">
             Read More
           </Button>

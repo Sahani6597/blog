@@ -57,9 +57,12 @@ const mapPostFromDB = (post: any, authorName?: string): Post => {
 // Function to create a new post
 export const createPost = async (postData: Omit<Post, 'id' | 'created_at' | 'updated_at'>): Promise<Post> => {
   try {
+    // Generate a URL-friendly slug from the title if not provided
     const slug = postData.slug || postData.title.toLowerCase()
-      .replace(/[^\w\s]/gi, '')
-      .replace(/\s+/g, '-');
+      .replace(/[^\w\s-]/g, '') // Remove special chars except hyphens
+      .replace(/\s+/g, '-')     // Replace spaces with hyphens
+      .replace(/-+/g, '-')      // Replace multiple hyphens with single hyphen
+      .trim();                  // Trim any leading/trailing hyphens
 
     const newPost = {
       title: postData.title,
@@ -193,6 +196,32 @@ export const getPostById = async (id: string): Promise<Post> => {
     return mapPostFromDB(post, authorProfile?.username);
   } catch (error) {
     console.error('Error fetching post:', error);
+    throw error;
+  }
+};
+
+// Function to get a single post by slug
+export const getPostBySlug = async (slug: string): Promise<Post> => {
+  try {
+    const { data: post, error } = await supabase
+      .from('posts')
+      .select('*')
+      .eq('slug', slug)
+      .single();
+
+    if (error) {
+      throw error;
+    }
+
+    const { data: authorProfile } = await supabase
+      .from('profiles')
+      .select('username')
+      .eq('id', post.author_id)
+      .single();
+
+    return mapPostFromDB(post, authorProfile?.username);
+  } catch (error) {
+    console.error('Error fetching post by slug:', error);
     throw error;
   }
 };

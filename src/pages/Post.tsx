@@ -4,6 +4,7 @@ import { Helmet } from "react-helmet-async";
 import type { Post, Comment } from "@/services/blogService";
 import { 
   getPostById, 
+  getPostBySlug,
   getCommentsByPostId, 
   addComment,
   getRecommendedPosts 
@@ -18,7 +19,7 @@ import { Badge } from "@/components/ui/badge";
 import RecommendedPosts from "@/components/blog/RecommendedPosts";
 
 const PostPage = () => {
-  const { id } = useParams<{ id: string }>(); // Get the post id from the URL
+  const { slug } = useParams<{ slug: string }>(); // Get the post slug from the URL
   const [post, setPost] = useState<Post | null>(null);
   const [comments, setComments] = useState<Comment[]>([]);
   const [recommendedPosts, setRecommendedPosts] = useState<Post[]>([]);
@@ -30,16 +31,16 @@ const PostPage = () => {
 
   useEffect(() => {
     const fetchData = async () => {
-      if (!id) return;
+      if (!slug) return;
 
       setIsLoading(true);
       try {
-        const fetchedPost = await getPostById(id);
+        const fetchedPost = await getPostBySlug(slug);
         if (fetchedPost) {
           setPost(fetchedPost);
           const [fetchedComments, fetchedRecommendedPosts] = await Promise.all([
-            getCommentsByPostId(id),
-            fetchedPost.category ? getRecommendedPosts(fetchedPost.category, id) : Promise.resolve([]),
+            getCommentsByPostId(fetchedPost.id),
+            fetchedPost.category ? getRecommendedPosts(fetchedPost.category, fetchedPost.id) : Promise.resolve([]),
           ]);
           setComments(fetchedComments);
           setRecommendedPosts(fetchedRecommendedPosts);
@@ -57,7 +58,7 @@ const PostPage = () => {
     };
 
     fetchData();
-  }, [id, toast]);
+  }, [slug, toast]);
 
   const handleSubmitComment = async () => {
     if (!post || !user || !commentText.trim()) return;
