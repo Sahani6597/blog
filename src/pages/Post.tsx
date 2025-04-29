@@ -156,12 +156,32 @@ const PostPage = () => {
   return (
     <div className="max-w-4xl mx-auto">
       <Helmet>
-        <title>{post.title}</title>
-        <meta
-          name="description"
-          content={post.content.substring(0, 155).replace(/<[^>]*>/g, '')} // Strip HTML and limit to 155 chars
-        />
-      </Helmet>
+  <title>{post.title}</title>
+  <meta
+    name="description"
+    content={post.content.substring(0, 155).replace(/<[^>]*>/g, '')}
+  />
+
+  {/* Open Graph tags */}
+  <meta property="og:title" content={post.title} />
+  <meta
+    property="og:description"
+    content={post.content.substring(0, 155).replace(/<[^>]*>/g, '')}
+  />
+  <meta property="og:image" content={post.cover_image || '/default-og-image.jpg'} />
+  <meta property="og:url" content={window.location.href} />
+  <meta property="og:type" content="article" />
+
+  {/* Twitter Card tags */}
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content={post.title} />
+  <meta
+    name="twitter:description"
+    content={post.content.substring(0, 155).replace(/<[^>]*>/g, '')}
+  />
+  <meta name="twitter:image" content={post.cover_image || '/default-og-image.jpg'} />
+</Helmet>
+
 
       <div className="mb-6">
         <Link to="/" className="inline-flex items-center text-blog-purple hover:text-blog-darkPurple transition-colors">
