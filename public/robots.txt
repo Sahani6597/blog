@@ -1,4 +1,2 @@
 User-agent: *
-Disallow:
-
-Sitemap: https://blog420.site/sitemap.xml
+Allow: /
