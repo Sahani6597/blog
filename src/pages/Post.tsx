@@ -156,32 +156,47 @@ const PostPage = () => {
   return (
     <div className="max-w-4xl mx-auto">
       <Helmet>
-  <title>{post.title}</title>
-  <meta
-    name="description"
-    content={post.content.substring(0, 155).replace(/<[^>]*>/g, '')}
-  />
+        <title>{post.title}</title>
+        <meta
+          name="description"
+          content={post.content.substring(0, 155).replace(/<[^>]*>/g, '')}
+        />
+        <link rel="canonical" href={window.location.href} />
 
-  {/* Open Graph tags */}
-  <meta property="og:title" content={post.title} />
-  <meta
-    property="og:description"
-    content={post.content.substring(0, 155).replace(/<[^>]*>/g, '')}
-  />
-  <meta property="og:image" content={post.cover_image || '/default-og-image.jpg'} />
-  <meta property="og:url" content={window.location.href} />
-  <meta property="og:type" content="article" />
+        {/* Open Graph tags */}
+        <meta property="og:title" content={post.title} />
+        <meta property="og:description" content={post.content.substring(0, 155).replace(/<[^>]*>/g, '')} />
+        <meta property="og:image" content={post.cover_image || '/default-og-image.jpg'} />
+        <meta property="og:url" content={window.location.href} />
+        <meta property="og:type" content="article" />
 
-  {/* Twitter Card tags */}
-  <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content={post.title} />
-  <meta
-    name="twitter:description"
-    content={post.content.substring(0, 155).replace(/<[^>]*>/g, '')}
-  />
-  <meta name="twitter:image" content={post.cover_image || '/default-og-image.jpg'} />
-</Helmet>
+        {/* Twitter Card tags */}
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content={post.title} />
+        <meta name="twitter:description" content={post.content.substring(0, 155).replace(/<[^>]*>/g, '')} />
+        <meta name="twitter:image" content={post.cover_image || '/default-og-image.jpg'} />
 
+        {/* Structured Data */}
+        <script type="application/ld+json">
+          {JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "BlogPosting",
+            "headline": post.title,
+            "description": post.content.substring(0, 155).replace(/<[^>]*>/g, ''),
+            "image": post.cover_image || '/default-og-image.jpg',
+            "author": {
+              "@type": "Person",
+              "name": post.author_name
+            },
+            "datePublished": post.created_at,
+            "dateModified": post.updated_at || post.created_at,
+            "mainEntityOfPage": {
+              "@type": "WebPage",
+              "@id": window.location.href
+            }
+          })}
+        </script>
+      </Helmet>
 
       <div className="mb-6">
         <Link to="/" className="inline-flex items-center text-blog-purple hover:text-blog-darkPurple transition-colors">
@@ -195,7 +210,7 @@ const PostPage = () => {
           <div className="w-full h-80 overflow-hidden">
             <img
               src={post.cover_image}
-              alt={post.title}
+              alt={`Cover image for ${post.title}`}
               className="w-full h-full object-cover"
             />
           </div>
