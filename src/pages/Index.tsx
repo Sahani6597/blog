@@ -41,11 +41,40 @@ const HomePage = () => {
   return (
     <>
       <Helmet>
-        <title>NextBlog - Insights on Technology, Lifestyle, Business, and More</title>
-        <meta 
-          name="description" 
-          content="Your source for insights on technology, lifestyle, business, and more. Explore expert articles in tech, lifestyle, travel, and more." 
-        />
+        <title>Blog420 - Daily Updates on News, Sports, Politics & More</title>
+        <meta name="description" content="Blog420 delivers reliable and engaging content on current events, politics, sports, tech, lifestyle, and more. Stay informed with fresh insights and community-driven discussions." />
+        <meta name="keywords" content="Blog420, news blog, sports updates, political analysis, tech news, lifestyle tips, trending topics, daily blog, current affairs" />
+        <meta name="author" content="Blog420 Editorial Team" />
+        <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
+        
+        <meta property="og:title" content="Blog420 - Your Daily Dose of Insightful Content" />
+        <meta property="og:description" content="Explore trending news, in-depth articles, and real opinions on sports, politics, tech, and more. Join the conversation on Blog420." />
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content="https://www.blog420.site/" />
+        <meta property="og:image" content="https://media-hosting.imagekit.io/eae9f0b2b67140e2/screenshot_1746028551189.png?Expires=1840636551&Key-Pair-Id=K2ZIVPTIP2VGHC&Signature=GkdPRgul9YhHY6EKECSWqr8X9Jfrx0kf1Y4LbcjnRuRDVr--uH5grBG7K2jO6KIh08EladLGswW3HYWsrE4D82zyPYQOjgXaVgRdj3TFAPxPGjGthoRYZEJdBKlPGg8G4R7je9y1XAC~TBZC7IrJW4g0iP5VzKLjB1uyWrFqVnVWxVyXI0hFvxJNkgwdG-zxS4f4A2LjEu14QAO2wnKJ4yPmf7GUsprf~V-~0zg7Qqx~qRcNV8zcBHo4xWNW~GZlmS0Yd6FY5TNiHTuyv~RlI5dnOxj689I9NNjrw4uquham7VexJFEZ1Rn8ByCAx9patYvkKXdaAgSRpEYnLV6KBQ__" />
+        <meta property="og:site_name" content="Blog420" />
+        
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content="Blog420 - Fresh News, Honest Takes, and Smart Reads" />
+        <meta name="twitter:description" content="Stay updated with the latest in news, sports, tech, and politics. Blog420 is your trusted source for thoughtful articles and trending updates." />
+        <meta name="twitter:image" content="https://media-hosting.imagekit.io/e43155f430614b1d/fav.png" />
+        <meta name="twitter:site" content="@Blog420" />
+        
+        <link rel="canonical" href="https://www.blog420.site/" />
+
+        <script type="application/ld+json">
+          {JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "WebSite",
+            "name": "Blog420",
+            "url": "https://www.blog420.site/",
+            "potentialAction": {
+              "@type": "SearchAction",
+              "target": "https://www.blog420.site/post/{search_term_string}",
+              "query-input": "required name=search_term_string"
+            }
+          })}
+        </script>
       </Helmet>
 
       <div className="space-y-8">
