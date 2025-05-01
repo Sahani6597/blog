@@ -1,5 +1,23 @@
 import { supabase } from '@/integrations/supabase/client';
 
+// Add helper functions
+function formatDate(date: string): string {
+  return new Date(date).toISOString().split('T')[0];
+}
+
+function escapeXml(unsafe: string): string {
+  return unsafe.replace(/[<>&'"]/g, (c) => {
+    switch (c) {
+      case '<': return '&lt;';
+      case '>': return '&gt;';
+      case '&': return '&amp;';
+      case '\'': return '&apos;';
+      case '"': return '&quot;';
+      default: return c;
+    }
+  });
+}
+
 export async function GET() {
   const urls = [
     // Static pages
@@ -21,8 +39,8 @@ export async function GET() {
     posts?.forEach(post => {
       urls.push({
         loc: `https://www.blog420.site/post/${post.slug}`,
-        lastmod: new Date(post.updated_at).toISOString(),
-        priority: '0.8', // Higher priority for daily updates
+        lastmod: formatDate(post.updated_at),
+        priority: '0.8',
         changefreq: 'daily',
       });
     });
@@ -38,17 +56,19 @@ export async function GET() {
     forumPosts?.forEach(post => {
       urls.push({
         loc: `https://www.blog420.site/forum/${post.id}`,
-        lastmod: new Date(post.updated_at).toISOString(),
+        lastmod: formatDate(post.updated_at),
         priority: '0.6',
         changefreq: 'weekly',
       });
     });
 
-    // XML output
     const xml = `<?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9
+        http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
 ${urls.map(url => `  <url>
-    <loc>${url.loc}</loc>${url.lastmod ? `
+    <loc>${escapeXml(url.loc)}</loc>${url.lastmod ? `
     <lastmod>${url.lastmod}</lastmod>` : ''}${url.changefreq ? `
     <changefreq>${url.changefreq}</changefreq>` : ''}${url.priority ? `
     <priority>${url.priority}</priority>` : ''}
@@ -57,7 +77,8 @@ ${urls.map(url => `  <url>
 
     return new Response(xml.trim(), {
       headers: {
-        'Content-Type': 'application/xml',
+        'Content-Type': 'application/xml; charset=UTF-8',
+        'X-Content-Type-Options': 'nosniff',
         'Cache-Control': 'max-age=0, s-maxage=3600',
       },
     });

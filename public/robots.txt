@@ -5,6 +5,5 @@ Allow: /
 Sitemap: https://www.blog420.site/sitemap.xml
 
 # Disallow
-Disallow: /api/
 Disallow: /admin/
 Disallow: /private/
