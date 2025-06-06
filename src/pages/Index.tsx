@@ -50,7 +50,7 @@ const HomePage = () => {
         <meta property="og:title" content="Blog420 - Your Daily Dose of Insightful Content" />
         <meta property="og:description" content="Explore trending news, in-depth articles, and real opinions on sports, politics, tech, and more. Join the conversation on Blog420." />
         <meta property="og:type" content="website" />
-        <meta property="og:url" content="https://www.blog420.site/" />
+        <meta property="og:url" content="https://blog420.vercel.app/" />
         <meta property="og:image" content="https://media-hosting.imagekit.io/eae9f0b2b67140e2/screenshot_1746028551189.png?Expires=1840636551&Key-Pair-Id=K2ZIVPTIP2VGHC&Signature=GkdPRgul9YhHY6EKECSWqr8X9Jfrx0kf1Y4LbcjnRuRDVr--uH5grBG7K2jO6KIh08EladLGswW3HYWsrE4D82zyPYQOjgXaVgRdj3TFAPxPGjGthoRYZEJdBKlPGg8G4R7je9y1XAC~TBZC7IrJW4g0iP5VzKLjB1uyWrFqVnVWxVyXI0hFvxJNkgwdG-zxS4f4A2LjEu14QAO2wnKJ4yPmf7GUsprf~V-~0zg7Qqx~qRcNV8zcBHo4xWNW~GZlmS0Yd6FY5TNiHTuyv~RlI5dnOxj689I9NNjrw4uquham7VexJFEZ1Rn8ByCAx9patYvkKXdaAgSRpEYnLV6KBQ__" />
         <meta property="og:site_name" content="Blog420" />
         
@@ -60,17 +60,17 @@ const HomePage = () => {
         <meta name="twitter:image" content="https://media-hosting.imagekit.io/e43155f430614b1d/fav.png" />
         <meta name="twitter:site" content="@Blog420" />
         
-        <link rel="canonical" href="https://www.blog420.site/" />
+        <link rel="canonical" href="https://blog420.vercel.app/" />
 
         <script type="application/ld+json">
           {JSON.stringify({
             "@context": "https://schema.org",
             "@type": "WebSite",
             "name": "Blog420",
-            "url": "https://www.blog420.site/",
+            "url": "https://blog420.vercel.app/",
             "potentialAction": {
               "@type": "SearchAction",
-              "target": "https://www.blog420.site/post/{search_term_string}",
+              "target": "https://blog420.vercel.app/post/{search_term_string}",
               "query-input": "required name=search_term_string"
             }
           })}
