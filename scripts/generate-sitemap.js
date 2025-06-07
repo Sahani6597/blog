@@ -8,13 +8,14 @@ const SUPABASE_PUBLISHABLE_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiO
 
 const supabase = createClient(SUPABASE_URL, SUPABASE_PUBLISHABLE_KEY);
 
-const baseUrl = 'https://blog420.site';
+const baseUrl = 'https://blog420.vercel.app';
 
 const staticRoutes = [
   { url: '/', changefreq: 'daily', priority: 1.0 },
   { url: '/post', changefreq: 'weekly', priority: 0.9 },
   { url: '/about', changefreq: 'monthly', priority: 0.7 },
   { url: '/contact', changefreq: 'monthly', priority: 0.6 },
+  { url:'ai-humalizer', changefreq: 'monthly', priority: 0.5 },
 ];
 
 async function generateSitemap() {
